@@ -57,9 +57,6 @@ require('packer').startup(function(use)
   -- Fuzzy Finder Algorithm which requires local dependencies to be built. Only load if `make` is available
   use { 'nvim-telescope/telescope-fzf-native.nvim', run = 'make', cond = vim.fn.executable 'make' == 1 }
 
-  use 'nvim-tree/nvim-tree.lua' -- file browser
-  use 'nvim-tree/nvim-web-devicons' -- vscode-like icons for nvim-tree. Needs nerd fonts
-
   -- Add custom plugins to packer from ~/.config/nvim/lua/custom/plugins.lua
   local has_plugins, plugins = pcall(require, 'custom.plugins')
   if has_plugins then
@@ -431,44 +428,6 @@ cmp.setup {
     { name = 'luasnip' },
   },
 }
-
--- setup nvim-tree to replace netrw
-local nvimtree = require 'nvim-tree'
-
--- Disable netrw and replace it with nvim-tree
--- recommended settings from nvim-tree documentation
-vim.g.loaded_netrw = 1
-vim.g.loaded_netrwPlugin = 1
-
-nvimtree.setup({
-  view = {
-    adaptive_size = false,
-    width = 40,
-  },
-  renderer = {
-    icons = {
-      glyphs = {
-        folder = {
-          arrow_closed = "", -- arrow when folder is closed
-          arrow_open = "", -- arrow when folder is open
-        },
-      },
-    },
-  },
-  -- disable window_picker for
-  -- explorer to work well with
-  -- window splits
-  actions = {
-    open_file = {
-      window_picker = {
-        enable = false,
-      },
-    },
-  },
-  -- 	git = {
-  -- 		ignore = false,
-  -- 	},
-})
 
 require 'after/keymaps'
 
