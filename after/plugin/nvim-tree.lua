@@ -1,5 +1,9 @@
 -- setup nvim-tree to replace netrw
-local nvimtree = require 'nvim-tree'
+local nvimtree_status, nvimtree = pcall(require, 'nvim-tree')
+if not nvimtree_status then
+  print("nvim-tree not found")
+  return
+end
 
 -- Disable netrw and replace it with nvim-tree
 -- recommended settings from nvim-tree documentation
